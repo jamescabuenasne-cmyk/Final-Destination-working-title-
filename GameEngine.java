@@ -67,7 +67,7 @@ public class GameEngine {
             System.out.println("Returning to main menu...");
             return false;
         }
- 
+        //change to a switch statement if more scenes are added
         if (choice.nextScene == 1) currentScene = scene1;
         else if (choice.nextScene == 2) currentScene = scene2;
         else if (choice.nextScene == 3) currentScene = scene3;
