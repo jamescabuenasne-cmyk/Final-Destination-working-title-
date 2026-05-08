@@ -1,14 +1,29 @@
+import java.awt.Color;
+import java.awt.Container;
 import java.util.Scanner;
- 
+import javax.swing.JFrame;
 public class GameEngine {
  
+    JFrame window;
+    Container con;
+
     Scanner sc = new Scanner(System.in);
  
     Scene currentScene;
     Scene scene1, scene2, scene3, scene4, scene5, scene6;
  
     public void startGame() {
- 
+        
+        window = new JFrame();
+        window.setSize(800, 600);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.getContentPane().setBackground(Color.BLACK);
+        window.setLayout(null);
+        window.setVisible(true);
+        window.setTitle("Final Destination!! (Working title)");
+
+        con = window.getContentPane();
+
         createScenes();
  
         while (true) {
