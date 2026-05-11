@@ -20,7 +20,7 @@ public class Scene {
         
         char option = 'A';
         for(Choice c : choices){
-            System.out.println(option + ". " + c.description);
+            System.out.println(option + ". " + c.getDescription());
             option++;
         }
     }

@@ -1,28 +1,55 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.util.Scanner;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 public class GameEngine {
  
     JFrame window;
     Container con;
+    JPanel titleNamePanel, startButtonPanel;
+    JLabel titleNameLabel;
+    Font titleFont = new Font("Comic Sans MS", Font.PLAIN, 50);
+    JButton startButton;
 
     Scanner sc = new Scanner(System.in);
  
     Scene currentScene;
     Scene scene1, scene2, scene3, scene4, scene5, scene6;
- 
+    
     public void startGame() {
-        
         window = new JFrame();
         window.setSize(800, 600);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().setBackground(Color.BLACK);
+        window.getContentPane().setBackground(Color.black);
         window.setLayout(null);
-        window.setVisible(true);
+        con = window.getContentPane();
         window.setTitle("Final Destination!! (Working title)");
 
-        con = window.getContentPane();
+        titleNamePanel = new JPanel();
+        titleNamePanel.setBounds(100, 100, 600, 150);
+        titleNamePanel.setBackground(Color.black);
+        titleNameLabel = new JLabel("Final Destination!!");
+        titleNameLabel.setForeground(Color.white);
+        titleNameLabel.setFont(titleFont);
+
+        startButtonPanel = new JPanel();
+        startButtonPanel.setBounds(300, 400, 200, 100);
+        startButtonPanel.setBackground(Color.blue);
+
+        startButton = new JButton("Start");
+        startButton.setBackground(Color.black);
+        startButton.setForeground(Color.white);
+        
+
+        startButtonPanel.add(startButton);
+        titleNamePanel.add(titleNameLabel);
+        con.add(titleNamePanel);
+        con.add(startButtonPanel);
 
         createScenes();
  
@@ -67,28 +94,28 @@ public class GameEngine {
  
     public boolean processChoice(Choice choice) {
  
-        if (choice.gameOver) {
-            System.out.println("\n" + choice.deathMessage);
+        if (choice.isGameOver()) {
+            System.out.println("\n" + choice.getDeathMessage());
             System.out.println("Game Over");
             return false;
         }
 
  
         if (currentScene.id == 6) {   
-            if (choice.description.equals("B")) {
+            if (choice.getDescription().equals("B")) {
                 System.out.println("\n The house explodes out of nowhere...");
             }
  
             System.out.println("Returning to main menu...");
             return false;
         }
-        //change to a switch statement if more scenes are added
-        if (choice.nextScene == 1) currentScene = scene1;
-        else if (choice.nextScene == 2) currentScene = scene2;
-        else if (choice.nextScene == 3) currentScene = scene3;
-        else if (choice.nextScene == 4) currentScene = scene4;
-        else if (choice.nextScene == 5) currentScene = scene5;
-        else if (choice.nextScene == 6) currentScene = scene6;
+        
+        if (choice.getNextScene() == 1) currentScene = scene1;
+        else if (choice.getNextScene() == 2) currentScene = scene2;
+        else if (choice.getNextScene() == 3) currentScene = scene3;
+        else if (choice.getNextScene() == 4) currentScene = scene4;
+        else if (choice.getNextScene() == 5) currentScene = scene5;
+        else if (choice.getNextScene() == 6) currentScene = scene6;
  
  
         return true;
@@ -134,7 +161,7 @@ public class GameEngine {
        // Scenes are currently summarized for testing purposes.
        // Full narrative scenes will be added in future updates.
        // - SEBLOS
-
+        window.setVisible(true);
     }
 }
  
