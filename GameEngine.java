@@ -1,15 +1,48 @@
+import java.awt.*;
 import java.util.Scanner;
- 
+import javax.swing.*;
+
 public class GameEngine {
+
+        JFrame window;
+        Container con;
+        JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel;
+        JLabel titleNameLabel;
+        Font titleFont = new Font("Courier New", Font.PLAIN, 20);
+        Font normalFont = new Font("Courier New", Font.PLAIN, 25);
+
+        Scanner sc = new Scanner(System.in);
  
-    Scanner sc = new Scanner(System.in);
+        GameObject currentScene;
  
-    GameObject currentScene;
- 
-    Scene scene1, scene2, scene3, scene4, scene5, scene6;
+        Scene scene1, scene2, scene3, scene4, scene5, scene6;
  
     public void startGame() {
- 
+        
+        //the game window...
+        window = new JFrame("Final Destination!");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.getContentPane().setBackground(Color.black);
+        window.setSize(800, 600);
+        window.setLayout(null);
+        window.setLocationRelativeTo(null);
+        con = window.getContentPane();
+
+        //Panels for the title and start button...
+        titleNamePanel = new JPanel();
+        titleNamePanel.setBounds(100, 100, 600, 150);
+        titleNamePanel.setBackground(Color.black);
+        titleNameLabel = new JLabel("Final Destination");
+        titleNameLabel.setForeground(Color.white);
+        titleNameLabel.setFont(titleFont);
+        titleNamePanel.add(titleNameLabel);
+
+        con.add(titleNamePanel);
+
+
+        window.setVisible(true);
+        //do not put any GUI stuff below this line...
+        //---------------------------------------------------------------
         createScenes();
  
         while (true) {
