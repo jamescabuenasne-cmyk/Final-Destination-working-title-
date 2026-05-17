@@ -1,3 +1,4 @@
+
 public class Choice {
     private String description;
     private int nextScene;
